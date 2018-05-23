@@ -1,0 +1,10 @@
+.Navbar {
+    display: flex; 
+    width: 100%;
+    border-bottom: 1px solid #BBBBBB;
+}
+
+.Item {
+    padding: 0 15px;
+    border-right: 1px solid #BBBBBB;
+}
