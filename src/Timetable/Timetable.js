@@ -5,12 +5,11 @@ import './Timetable.css';
 class Timetable extends Component {
   constructor(props) {
     super(props);
-    this.rows = [];
-    this.createTable = this.createTable.bind(this)
-    this.getTime = this.getTime.bind(this)
+    this.createTable = this.createTable.bind(this);
+    this.getTime = this.getTime.bind(this);
+    this.rows = [];    
     this.data = [];
     this.state = {
-      numRows: 0,
       numTenth: 0,
     }
   }
@@ -22,10 +21,7 @@ class Timetable extends Component {
     this.tenth = tenth
     return {time, tenth}
   }
-  componentWillMount() {
-    console.log('mount')
-    // this.setState({numRows: this.state.numRows + 1})    
-  }
+
 
   createTable() {
     const {time, tenth} = this.getTime()
@@ -36,7 +32,12 @@ class Timetable extends Component {
       cell.push(<td key={cellID} id={cellID}>{value}</td>)    
     });
     this.rows.push(<tr key={this.rows.length} id={this.rows.length}>{cell}</tr>)      
+    this.updateCounter()
     return this.rows
+  }
+
+  updateCounter() {
+    return this.props.updateCounter(this.tenth)
   }
 
   render() {
@@ -49,7 +50,7 @@ class Timetable extends Component {
         </tr>
       </thead>
       <tbody>
-        { this.createTable() }
+        {this.createTable() }      
       </tbody>
     </table>
   )}

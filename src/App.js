@@ -62,7 +62,9 @@ class App extends Component {
 
   handlerCounter(e) {
     console.log(e)
-    this.setState({numTenth: e})
+    this.setState((prevState, props) => {
+      console.log(prevState, props)
+    })
   }
 
   render() {
