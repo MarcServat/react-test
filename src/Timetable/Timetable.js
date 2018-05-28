@@ -1,45 +1,58 @@
 import React, { Component } from 'react';
-import {Table, Column, Cell} from '@blueprintjs/table'
+import { Classes } from "@blueprintjs/core"
 import './Timetable.css';
 
 class Timetable extends Component {
   constructor(props) {
     super(props);
-    this.tenth = 0;
-    this.time = '';
-    this.table = {time: [], tenth: []};
-    this.state = {time: [], tenth: []};
+    this.rows = [];
+    this.createTable = this.createTable.bind(this)
+    this.getTime = this.getTime.bind(this)
+    this.data = [];
+    this.state = {
+      numRows: 0,
+      numTenth: 0,
+    }
   }
 
-  componentWillUpdate(){
-    const d = new Date(Date.now());    
-    this.tenth = d.getMilliseconds().toString()[0];
-    this.time = `${d.toDateString()} ${d.toLocaleTimeString()}.${d.getMilliseconds()}`      
-    this.table['time'].push(this.time)
-    this.table['tenth'].push(this.tenth)
+  getTime() {
+    const d = new Date(Date.now());  
+    const tenth = d.getMilliseconds().toString()[0];
+    const time = `${d.toDateString()} ${d.toLocaleTimeString()}.${d.getMilliseconds()}`
+    this.tenth = tenth
+    return {time, tenth}
+  }
+  componentWillMount() {
+    console.log('mount')
+    // this.setState({numRows: this.state.numRows + 1})    
   }
 
-  getTime(rowIndex, columnIndex) {
-    return  <Cell columnIndex={columnIndex} rowIndex={rowIndex}>
-              {this.table['time'][rowIndex]}
-            </Cell>
-  }
-
-  getTenth(rowIndex, columnIndex) {
-    return <Cell columnIndex={columnIndex} rowIndex={rowIndex}>{this.table['tenth'][rowIndex]}</Cell>
+  createTable() {
+    const {time, tenth} = this.getTime()
+    this.data.push({time, tenth})
+    let cell = []
+    Object.values(this.data[this.data.length-1]).forEach((value, idx) => {
+      let cellID = `cell${this.data.length}-${idx}`
+      cell.push(<td key={cellID} id={cellID}>{value}</td>)    
+    });
+    this.rows.push(<tr key={this.rows.length} id={this.rows.length}>{cell}</tr>)      
+    return this.rows
   }
 
   render() {
     return (
-      <div>
-        <Table  numRows={this.props.numRows}
-                enableRowHeader={false}
-                defaultColumnWidth={300}>
-          <Column name="Time" cellRenderer={this.getTime.bind(this)}/>
-          <Column name="Tenth of a second" cellRenderer={this.getTenth.bind(this)}/>
-        </Table>
-      </div>
-    )}
+      <table className={Classes.HTML_TABLE_BORDERED}>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Tenth of a second</th>
+        </tr>
+      </thead>
+      <tbody>
+        { this.createTable() }
+      </tbody>
+    </table>
+  )}
 }
 
 export default Timetable;
