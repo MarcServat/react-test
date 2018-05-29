@@ -32,15 +32,15 @@ class Timetable extends Component {
       cell.push(<td key={cellID} id={cellID}>{value}</td>)    
     });
     this.rows.push(<tr key={this.rows.length} id={this.rows.length}>{cell}</tr>)      
-    this.updateCounter()
     return this.rows
   }
 
-  updateCounter() {
-    return this.props.updateCounter(this.tenth)
+  componentDidUpdate(prevState) {
+    this.props.updateCounter(this.tenth)
   }
 
   render() {
+    let rows = this.createTable()
     return (
       <table className={Classes.HTML_TABLE_BORDERED}>
       <thead>
@@ -50,7 +50,7 @@ class Timetable extends Component {
         </tr>
       </thead>
       <tbody>
-        {this.createTable() }      
+        { rows }      
       </tbody>
     </table>
   )}

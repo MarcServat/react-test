@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './navbar/Navbar';
 import Button from './button/Button';
 import Timetable from './Timetable/Timetable';
-import Tenth from './Tenth/Tenth';
+// import Tenth from './Tenth/Tenth';
 import './App.css';
 
 class App extends Component {
@@ -57,15 +57,17 @@ class App extends Component {
   }
 
   handlerAddRow(e) {
-    this.setState({numRows: e})
+      this.setState({numRows: e})
   }
 
   handlerCounter(e) {
-    console.log(e)
-    this.setState((prevState, props) => {
-      console.log(prevState, props)
-    })
+      this.setState({numTenth: e})
   }
+
+  shouldComponentUpdate(nextProp, nextState) {
+    return (this.state.numRows === nextState.numRows) ? false : true
+  }
+
 
   render() {
     return (
@@ -75,11 +77,11 @@ class App extends Component {
         <Timetable  updateCounter={this.handlerCounter} 
                     numRows={this.state.numRows}/>
         <div className="tenthRow">
-        {this.state.tenth.map((val, i) => {
+        {/* {this.state.tenth.map((val, i) => {
           return <Tenth key={i}
                         name={val.name}
                         value={val.count}/>          
-        })}
+        })} */}
         </div>
       </div>
     );
