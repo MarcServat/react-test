@@ -1,4 +1,26 @@
 .timeTable {
     display: block;
-    margin: 20px;
+    width: 100%;
+    overflow:auto;
 }
+
+td, th {
+    width: 20rem;
+    height: 2rem;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+  }
+  th {
+    background: white;
+    border-color: white;
+  }
+
+  tbody tr:nth-child(odd) {
+    background: #eee;
+  }
+
+  table {
+    height: 100vh;
+    max-height: calc(100vh - 260px);
+    overflow: auto;
+  }

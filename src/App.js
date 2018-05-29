@@ -32,9 +32,7 @@ class App extends Component {
   handlerCounter(e) {
     let copiedState = Object.assign([], this.state.tenth)
     copiedState[e].count = copiedState[e].count + 1
-    console.log(copiedState)    
     this.setState({tenth: copiedState})
-    console.log(this.state.tenth)
   }
 
   shouldComponentUpdate(nextProp, nextState) {

@@ -1,3 +1,8 @@
+.App {
+    height: 100vh;
+}
+
 .tenthRow {
     display: flex;
+    justify-content: space-between;
 }

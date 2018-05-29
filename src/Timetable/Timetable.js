@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Classes } from "@blueprintjs/core"
 import './Timetable.css';
 
 class Timetable extends Component {
@@ -41,7 +40,7 @@ class Timetable extends Component {
   render() {
     let rows = this.createTable()
     return (
-      <table className={Classes.HTML_TABLE_BORDERED}>
+      <table className="timeTable">
       <thead>
         <tr>
           <th>Time</th>
