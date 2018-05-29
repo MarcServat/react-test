@@ -34,8 +34,7 @@ class Timetable extends Component {
     this.rows.push(<tr key={this.rows.length} id={this.rows.length}>{cell}</tr>)      
     return this.rows
   }
-
-  componentDidUpdate(prevState) {
+  componentDidUpdate() {
     this.props.updateCounter(this.tenth)
   }
 

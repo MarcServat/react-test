@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './navbar/Navbar';
 import Button from './button/Button';
 import Timetable from './Timetable/Timetable';
-// import Tenth from './Tenth/Tenth';
+import Tenth from './Tenth/Tenth';
 import './App.css';
 
 class App extends Component {
@@ -10,49 +10,18 @@ class App extends Component {
     super(props);
     this.handlerAddRow = this.handlerAddRow.bind(this);
     this.handlerCounter = this.handlerCounter.bind(this);
+    this.tenthList = 9;
     this.state = {
       numRows: 0,
-      numTenth: 0,
-      tenth: [{
-        name: "Tenth 0",
-        count: 0
-      },
-      {
-        name: "Tenth 1",
-        count: 0
-      },
-      {
-        name: "Tenth 2",
-        count: 0
-      },
-      {
-        name: "Tenth 3",
-        count: 0
-      },
-      {
-        name: "Tenth 4",
-        count: 0
-      },
-      {
-        name: "Tenth 5",
-        count: 0
-      },
-      {
-        name: "Tenth 6",
-        count: 0
-      },
-      {
-        name: "Tenth 7",
-        count: 0
-      },
-      {
-        name: "Tenth 8",
-        count: 0
-      },
-      {
-        name: "Tenth 9",
-        count: 0
-      }]
+      tenthData: 0,
+      tenth: Array(9).fill(0).reduce((acc, value, index) => {
+        acc.push({
+          key: index,
+          name: `Tenth ${index}`,
+          count: value
+        })
+        return acc
+      },[])
     };
   }
 
@@ -61,13 +30,16 @@ class App extends Component {
   }
 
   handlerCounter(e) {
-      this.setState({numTenth: e})
+    let copyState = Object.assign([], this.state.tenth)
+    if (copyState[e]['count']) {
+      copyState[e].count = copyState[e].count + 1  
+      this.setState({tenth: copyState})
+    }
   }
 
   shouldComponentUpdate(nextProp, nextState) {
-    return (this.state.numRows === nextState.numRows) ? false : true
+    return (this.state.numRows === nextState.numRows && this.state.tenthData === nextState.tenthData) ? false : true
   }
-
 
   render() {
     return (
@@ -77,11 +49,11 @@ class App extends Component {
         <Timetable  updateCounter={this.handlerCounter} 
                     numRows={this.state.numRows}/>
         <div className="tenthRow">
-        {/* {this.state.tenth.map((val, i) => {
+        {this.state.tenth.map((val, i) => {
           return <Tenth key={i}
                         name={val.name}
                         value={val.count}/>          
-        })} */}
+        })}
         </div>
       </div>
     );
