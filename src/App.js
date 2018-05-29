@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       numRows: 0,
       tenthData: 0,
-      tenth: Array(9).fill(0).reduce((acc, value, index) => {
+      tenth: Array(10).fill(0).reduce((acc, value, index) => {
         acc.push({
           key: index,
           name: `Tenth ${index}`,
@@ -30,11 +30,10 @@ class App extends Component {
   }
 
   handlerCounter(e) {
-    let copyState = Object.assign([], this.state.tenth)
-    copyState[e].count = copyState[e].count + 1
-  
-    console.log(copyState)    
-    this.setState({tenth: copyState})
+    let copiedState = Object.assign([], this.state.tenth)
+    copiedState[e].count = copiedState[e].count + 1
+    console.log(copiedState)    
+    this.setState({tenth: copiedState})
     console.log(this.state.tenth)
   }
 
