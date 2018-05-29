@@ -31,14 +31,15 @@ class App extends Component {
 
   handlerCounter(e) {
     let copyState = Object.assign([], this.state.tenth)
-    if (copyState[e]['count']) {
-      copyState[e].count = copyState[e].count + 1  
-      this.setState({tenth: copyState})
-    }
+    copyState[e].count = copyState[e].count + 1
+  
+    console.log(copyState)    
+    this.setState({tenth: copyState})
+    console.log(this.state.tenth)
   }
 
   shouldComponentUpdate(nextProp, nextState) {
-    return (this.state.numRows === nextState.numRows && this.state.tenthData === nextState.tenthData) ? false : true
+    return (this.state.numRows === nextState.numRows) ? false : true
   }
 
   render() {
