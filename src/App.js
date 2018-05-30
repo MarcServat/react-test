@@ -10,7 +10,6 @@ class App extends Component {
     super(props);
     this.handlerAddRow = this.handlerAddRow.bind(this);
     this.handlerCounter = this.handlerCounter.bind(this);
-    this.tenthList = 9;
     this.state = {
       numRows: 0,
       tenthData: 0,
@@ -25,6 +24,7 @@ class App extends Component {
     };
   }
 
+  // Increment to add a row to a table
   handlerAddRow(e) {
       this.setState({numRows: e})
   }
@@ -36,7 +36,7 @@ class App extends Component {
     this.setState({tenth: copiedState})
   }
 
-  // Avoid childrens re-render
+  // Avoid to re-render childrens
   shouldComponentUpdate(nextProp, nextState) {
     return (this.state.numRows === nextState.numRows) ? false : true
   }
