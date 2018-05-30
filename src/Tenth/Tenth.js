@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
+import './Tenth.css';
 
 class Tenth extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
-      <div className="bt-tenth">
-        <div>{this.props.value}</div>
-      </div>
-    );
-  }
+      <span className="tenthCounter">
+        <div className="title">{this.props.name}</div>
+        <div className="counter">{this.props.value}</div>
+      </span>
+    )}
 }
 
 export default Tenth;

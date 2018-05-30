@@ -1,0 +1,24 @@
+.tenthCounter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 3px;
+    width: 85px;
+    height: 90px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #edf0f2;
+}
+
+.title {
+    padding: 3px;
+    align-items: center;
+    font: bold 20px arial;
+    overflow: visible;   
+}
+
+.counter {
+    padding: 5px;    
+    font: bold 35px arial;    
+}
