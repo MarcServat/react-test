@@ -29,12 +29,14 @@ class App extends Component {
       this.setState({numRows: e})
   }
 
-  handlerCounter(e) {
+  // Update the tenth counter
+  handlerCounter(tenth) {
     let copiedState = Object.assign([], this.state.tenth)
-    copiedState[e].count = copiedState[e].count + 1
+    copiedState[tenth].count = copiedState[tenth].count + 1
     this.setState({tenth: copiedState})
   }
 
+  // Avoid childrens re-render
   shouldComponentUpdate(nextProp, nextState) {
     return (this.state.numRows === nextState.numRows) ? false : true
   }
